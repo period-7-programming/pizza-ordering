@@ -12,17 +12,15 @@ public class Main {
 		boolean selectedLanguage = false;
 		Order order = null;
 		while (selectedLanguage == false) {
-			System.out.println("Would you like to order in english, french, or spanish?");
-			String input = userLanguage.nextLine(); 
-			if (input.equalsIgnoreCase("english")) {
+			System.out.println("Would you like to order in english, or spanish?");
+			if (userLanguage.nextLine().equalsIgnoreCase("english")) {
 				order = new EnglishOrder();
 				selectedLanguage = true;
-			} else if (input.equalsIgnoreCase("SPANISH")) {
+				userLanguage.close();
+			} else if (userLanguage.nextLine().equalsIgnoreCase("SPANISH")) {
 				order = new SpanishOrder();
 				selectedLanguage = true;
-			} else if (input.equalsIgnoreCase("FRENCH")) {
-				order = new FrenchOrder();
-				selectedLanguage = true;
+				userLanguage.close();
 			} else {
 				System.out.println("That's not a valid language.");
 			}
@@ -60,7 +58,7 @@ class EnglishOrder extends Order {
 		wantTopping.add(false);
 
 		Scanner userInput = new Scanner(System.in);
-		System.out.println("What size pizza would you like?");
+
 		while (sizeSelected == false) {
 			String pizzaSizeInput = userInput.nextLine();
 			if (pizzaSizeInput.trim().equalsIgnoreCase("SMALL")) {
@@ -81,13 +79,12 @@ class EnglishOrder extends Order {
 			boolean acceptableAnswer = false;
 			String userResponse;
 			while (acceptableAnswer == false) {
-				System.out.println("Would you like " + toppingList.get(i) + " on your pizza?");
+				System.out.println("Would you like " + toppingList.get(i) + "on your pizza?");
 				userResponse = userInput.nextLine();
 				if (userResponse.trim().equalsIgnoreCase("YES")) {
 					wantTopping.set(i, true);
-					acceptableAnswer = true;
 				} else if (userResponse.trim().equalsIgnoreCase("NO")) {
-					acceptableAnswer = true;
+					
 				} else {
 					System.out.println("That's not a valid choice. Please answer yes or no.");
 				}
@@ -95,73 +92,6 @@ class EnglishOrder extends Order {
 		}
 		
 		System.out.println("You have ordered a " + pizzaSize +" pizza.");
-		System.out.println("It has the following toppings:");
-		for (int i = 0; i <= toppingList.size() - 1; i++) {
-			if (wantTopping.get(i) == true) {
-				System.out.println(toppingList.get(i));
-			}
-		}
-		userInput.close();
-	}
-}
-
-class SpanishOrder extends Order {
-	public void run() {
-		boolean sizeSelected = false;
-		String pizzaSize = "";
-
-		List<String> toppingList = new ArrayList<String>();
-		List<Boolean> wantTopping = new ArrayList<Boolean>();
-
-		toppingList.add("Pepperoni");
-		wantTopping.add(false);
-		toppingList.add("Extra queso");
-		wantTopping.add(false);
-		toppingList.add("Salchicha");
-		wantTopping.add(false);
-		toppingList.add("Pineapple");
-		wantTopping.add(false);
-		toppingList.add("Jamón");
-		wantTopping.add(false);
-		toppingList.add("Seta");
-		wantTopping.add(false);
-
-		Scanner userInput = new Scanner(System.in);
-		System.out.println("¿Qué tamaño de pizza le gustaría?");
-		while (sizeSelected == false) {
-			String pizzaSizeInput = userInput.nextLine();
-			if (pizzaSizeInput.trim().equalsIgnoreCase("pequeña")) {
-				pizzaSize = "pequeña";
-				sizeSelected = true;
-			} else if (pizzaSizeInput.trim().equalsIgnoreCase("medio")) {
-				pizzaSize = "medio";
-				sizeSelected = true;
-			} else if (pizzaSizeInput.trim().equalsIgnoreCase("grande")) {
-				pizzaSize = "grande";
-				sizeSelected = true;
-			} else {
-				System.out.println("Ése no es un tamaño válido, elige por favor pequeño, mediano o grande.");
-			}
-		}
-
-		for (int i = 0; i <= toppingList.size() - 1; i++) {
-			boolean acceptableAnswer = false;
-			String userResponse;
-			while (acceptableAnswer == false) {
-				System.out.println("¿Te gustaría " + toppingList.get(i) + " en tu pizza?");
-				userResponse = userInput.nextLine();
-				if (userResponse.trim().equalsIgnoreCase("si") || userResponse.trim().equalsIgnoreCase("sí")) {
-					wantTopping.set(i, true);
-					acceptableAnswer = true;
-				} else if (userResponse.trim().equalsIgnoreCase("NO")) {
-					acceptableAnswer = true;
-				} else {
-					System.out.println("Eso no es una opción válida. Por favor conteste sí o no.");
-				}
-			}
-		}
-		
-		System.out.println("Has pedido una pizza " + pizzaSize + ".");
 		System.out.println("It has the following topics:");
 		for (int i = 0; i <= toppingList.size() - 1; i++) {
 			if (wantTopping.get(i) == true) {
@@ -172,7 +102,7 @@ class SpanishOrder extends Order {
 	}
 }
 
-class FrenchOrder extends Order {
+class SpanishOrder extends Order { //Strings need translation
 	public void run() {
 		boolean sizeSelected = false;
 		String pizzaSize = "";
@@ -180,34 +110,34 @@ class FrenchOrder extends Order {
 		List<String> toppingList = new ArrayList<String>();
 		List<Boolean> wantTopping = new ArrayList<Boolean>();
 
-		toppingList.add("De pepperoni");
+		toppingList.add("Pepperoni");
 		wantTopping.add(false);
-		toppingList.add("plus de fromage");
+		toppingList.add("Extra cheese");
 		wantTopping.add(false);
-		toppingList.add("De la saucisse");
+		toppingList.add("Sausage");
 		wantTopping.add(false);
-		toppingList.add("De l'ananas");
+		toppingList.add("Pineapple");
 		wantTopping.add(false);
-		toppingList.add("De jambon");
+		toppingList.add("Ham");
 		wantTopping.add(false);
-		toppingList.add("Des champions");
+		toppingList.add("Mushrooms");
 		wantTopping.add(false);
 
 		Scanner userInput = new Scanner(System.in);
-		System.out.println("Quelle taille de pizza aimeriez-vous?");
+
 		while (sizeSelected == false) {
 			String pizzaSizeInput = userInput.nextLine();
-			if (pizzaSizeInput.trim().equalsIgnoreCase("petit")) {
-				pizzaSize = "petit";
+			if (pizzaSizeInput.trim().equalsIgnoreCase("SMALL")) {
+				pizzaSize = "small";
 				sizeSelected = true;
-			} else if (pizzaSizeInput.trim().equalsIgnoreCase("moyen")) {
-				pizzaSize = "moyen";
+			} else if (pizzaSizeInput.trim().equalsIgnoreCase("MEDIUM")) {
+				pizzaSize = "medium";
 				sizeSelected = true;
-			} else if (pizzaSizeInput.trim().equalsIgnoreCase("grand")) {
-				pizzaSize = "grand";
+			} else if (pizzaSizeInput.trim().equalsIgnoreCase("LARGE")) {
+				pizzaSize = "large";
 				sizeSelected = true;
 			} else {
-				System.out.println("Ce n'est pas une taille valide, s'il vous plaît choisir petit, moyen ou grand.");
+				System.out.println("That is not a valid size, please choose small, medium or large.");
 			}
 		}
 
@@ -215,20 +145,20 @@ class FrenchOrder extends Order {
 			boolean acceptableAnswer = false;
 			String userResponse;
 			while (acceptableAnswer == false) {
-				System.out.println("Voulez-vous le " + toppingList.get(i) + " sur votre pizza?");
+				System.out.println("Would you like " + toppingList.get(i) + "on your pizza?");
 				userResponse = userInput.nextLine();
-				if (userResponse.trim().equalsIgnoreCase("oui")) {
+				if (userResponse.trim().equalsIgnoreCase("YES")) {
 					wantTopping.set(i, true);
-					acceptableAnswer = true;
-				} else if (userResponse.trim().equalsIgnoreCase("non")) {
-					acceptableAnswer = true;
+				} else if (userResponse.trim().equalsIgnoreCase("NO")) {
+					
 				} else {
-					System.out.println("Ce n'est pas un choix valide. Veuillez répondre oui ou non.");
+					System.out.println("That's not a valid choice. Please answer yes or no.");
 				}
 			}
 		}
-		System.out.println("Vous avez commandé une pizza " + pizzaSize + ".");
-		System.out.println("Il a les garnitures suivantes:");
+		
+		System.out.println("You have ordered a " + pizzaSize +" pizza.");
+		System.out.println("It has the following topics:");
 		for (int i = 0; i <= toppingList.size() - 1; i++) {
 			if (wantTopping.get(i) == true) {
 				System.out.println(toppingList.get(i));
