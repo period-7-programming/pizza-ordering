@@ -177,7 +177,7 @@ class SpanishOrder extends Order {
 		}
 		
 		System.out.println("Has pedido una pizza " + pizzaSize + ".");
-		System.out.println("It has the following topics:");
+		System.out.println("Tiene los siguientes temas:");
 		for (int i = 0; i <= toppingList.size() - 1; i++) {
 			if (wantTopping.get(i) == true) {
 				System.out.println(toppingList.get(i));
