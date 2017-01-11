@@ -109,7 +109,7 @@ class EnglishOrder extends Order {
 				System.out.println(toppingList.get(i));
 			}
 		}
-		System.out.println("The pizza will be went to " + address + ".");
+		System.out.println("The pizza will be sent to " + address + ".");
 		userInput.close();
 	}
 }
