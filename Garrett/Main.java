@@ -11,11 +11,9 @@ public class Main {
 		String g = i.nextLine();
 
 		if (g.equalsIgnoreCase("English")) {
-
 			e.setEnglish();
 		}
 		if (g.equalsIgnoreCase("Deustch")) {
-
 			e.setGerman();
 		}
 		e.run();
@@ -41,17 +39,12 @@ class Language {
 
 	void setEnglish() {
 		q1 = "Hello, what size pizza would you like?";
-
 		q2 = "Ok, what would you like on your pizza?";
-
 		q3 = "Would you like thin or thick crust?";
-
 		s1 = "You have ordered a pizza that doesn't exist so thanks for breaking,";
-
 		r1 = "You have ordered a ";
 		r2 = " pizza with ";
 		r3 = " toppings on a ";
-
 		s2 = " _____      _ ";
 		s3 = "/  ___|    (_)";
 		s4 = "\\ `--.  ___ _  ___ _ __   ___ ___";
@@ -69,7 +62,6 @@ class Language {
 		r1 = "Sie haben eine ";
 		r2 = " pizza mit ";
 		r3 = " toppings auf einem ";
-
 		s2 = " _    _ _                             _            __ _   ";
 		s3 = "| |  | (_)                           | |          / _| |";
 		s4 = "| |  | |_ ___ ___  ___ _ __  ___  ___| |__   __ _| |_| |_ ";
