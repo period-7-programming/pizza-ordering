@@ -7,10 +7,10 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner userLanguage = new Scanner(System.in);
 		boolean selectedLanguage = false;
 		Order order = null;
+        // COMMENT: Include a phrase that will exit the program. Often !quit or :quit is used.
 		while (selectedLanguage == false) {
 			System.out.println("Would you like to order in english, french, or spanish?");
 			String input = userLanguage.nextLine(); 
@@ -28,15 +28,17 @@ public class Main {
 			}
 		}
 		order.run();
+        // COMMENT: You should close this before you run the 'order', as you are done with it and order runs large amounts of code
+        // before this line.
 		userLanguage.close();
 	}
 }
 
+// COMMENT: Move repetitive code into this class.
 class Order {
 	public void run(){
 		
 	}
-	
 }
 
 class EnglishOrder extends Order {
@@ -44,6 +46,7 @@ class EnglishOrder extends Order {
 		String name  = "";
 		String address = "";
 		boolean sizeSelected = false;
+        // COMMENT: An enum would probably be appropriate for this data type.
 		String pizzaSize = "";
 
 		List<String> toppingList = new ArrayList<String>();
@@ -110,6 +113,7 @@ class EnglishOrder extends Order {
 			}
 		}
 		System.out.println("The pizza will be sent to " + address + ".");
+        // COMMENT: Always close resources like scanners after you are done using it.
 		userInput.close();
 	}
 }
