@@ -1,102 +1,92 @@
 package pizza.ordering;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
+	static List<Object> a = new ArrayList<Object>();
 
 	public static void main(String[] args) {
 		Scanner i = new Scanner(System.in);
 
-		Language e = new Language();
+		boolean loop = true;
+		boolean lang = false; // false = English, true = German
+
+		System.out.println("English, Deutsch");
 		String g = i.nextLine();
 
-		if (g.equalsIgnoreCase("English")) {
-			e.setEnglish();
-		}
-		if (g.equalsIgnoreCase("Deustch")) {
-			e.setGerman();
-		}
-		e.run();
-		i.close();
-	}
-
-}
-
-class Language {
-
-	Scanner i = new Scanner(System.in);
-
-	// q = question, s = statement, r = read back
-
-	String q1 = "Hello, what size pizza would you like?", q2 = "Ok, what would you like on your pizza?",
-			q3 = "Would you like thin or thick crust?",
-			s1 = "You have ordered a pizza that doesn't exist so thanks for breaking,", r1 = "You have ordered a ",
-			r2 = " pizza with ", r3 = " toppings on a ";
-
-	String s2 = " _____      _ ", s3 = "/  ___|    (_)", s4 = "\\ `--.  ___ _  ___ _ __   ___ ___",
-			s5 = " `--. \\/ __| |/ _ \\ '_ \\ / __/ _ \\", s6 = "/\\__/ / (__| |  __/ | | | (_|  __/",
-			s7 = "\\____/ \\___|_|\\___|_| |_|\\___\\___|";
-
-	void setEnglish() {
-		q1 = "Hello, what size pizza would you like?";
-		q2 = "Ok, what would you like on your pizza?";
-		q3 = "Would you like thin or thick crust?";
-		s1 = "You have ordered a pizza that doesn't exist so thanks for breaking,";
-		r1 = "You have ordered a ";
-		r2 = " pizza with ";
-		r3 = " toppings on a ";
-		s2 = " _____      _ ";
-		s3 = "/  ___|    (_)";
-		s4 = "\\ `--.  ___ _  ___ _ __   ___ ___";
-		s5 = " `--. \\/ __| |/ _ \\ '_ \\ / __/ _ \\";
-		s6 = "/\\__/ / (__| |  __/ | | | (_|  __/";
-		s7 = "\\____/ \\___|_|\\___|_| |_|\\___\\___|";
-	}
-
-	void setGerman() {
-
-		q1 = "Hallo, welche Größe Pizza möchtest du?";
-		q2 = "Ok, was möchten Sie auf Ihrer Pizza?";
-		q3 = "Möchten Sie dünne oder dicke Kruste?";
-		s1 = "Sie haben eine Pizza, die nicht existiert so danke für Brechen, Wissenschaft bestellt.";
-		r1 = "Sie haben eine ";
-		r2 = " pizza mit ";
-		r3 = " toppings auf einem ";
-		s2 = " _    _ _                             _            __ _   ";
-		s3 = "| |  | (_)                           | |          / _| |";
-		s4 = "| |  | |_ ___ ___  ___ _ __  ___  ___| |__   __ _| |_| |_ ";
-		s5 = "| |/\\| | / __/ __|/ _ \\ '_ \\/ __|/ __| '_ \\ / _` |  _| __|";
-		s6 = "\\  /\\  / \\__ \\__ \\  __/ | | \\__ \\ (__| | | | (_| | | | |_";
-		s7 = " \\/  \\/|_|___/___/\\___|_| |_|___/\\___|_| |_|\\__,_|_|  \\__|";
-
-	}
-
-	String size, toppings, thickness;
-
-	void run() {
-
-		System.out.println(q1);
-		size = i.nextLine();
-		System.out.println(q2);
-		toppings = i.nextLine();
-		System.out.println(q3);
-		thickness = i.nextLine();
-
-		if (size.equals("null") && toppings.equals("null") && thickness.equals("null")) {
-
-			System.out.println(s1);
-			System.out.println(s2);
-			System.out.println(s3);
-			System.out.println(s4);
-			System.out.println(s5);
-			System.out.println(s6);
-			System.out.println(s7);
-
+		if (g.equalsIgnoreCase("english")) {
+			lang = false;
 		} else {
+			lang = true;
+		}
 
-			System.out.println(r1 + size + r2 + toppings + r3 + thickness);
+		while (loop) {
+
+			if (!lang) {
+				System.out.println("To order a pizza type, English. To display all orders type, Display english");
+				g = i.nextLine();
+				if (g.equalsIgnoreCase("display")) {
+					if (a.size() == 0) {
+						System.out.println("You haven't ordered anything yet");
+					} else {
+						System.out.println("Displaying orders");
+						System.out.println();
+						for (int f = 0; f < a.size(); f++) {
+							English r = (English) a.get(f);
+							System.out.println("Order " + (f + 1));
+							System.out.println("Size " + r.size);
+							System.out.println("Toppings " + r.toppings);
+							System.out.println("Crust " + r.thickness);
+							System.out.println("");
+						}
+					}
+				} else if (g.equalsIgnoreCase("english")) {
+					a.add(new English());
+					English b = (English) a.get(a.size() - 1);
+					b.run();
+				} else {
+					System.out.println("Invalid command");
+				}
+
+			}
+
+			if (lang) {
+				System.out
+						.println("Einen Pizzattyp bestellen, deutsch. Um alle Aufträge anzuzeigen, wählen Sie Deutsch");
+				g = i.nextLine();
+				if (g.equalsIgnoreCase("display")) {
+					if (a.size() == 0){
+						System.out.println("Sie haben noch nichts bestellt");
+					} else {
+					System.out.println("Aufträge anzeigen");
+					System.out.println();
+					for (int f = 0; f < a.size(); f++) {
+						German r = (German) a.get(f);
+						System.out.println("Order " + (f + 1));
+						System.out.println("Größe " + r.size);
+						System.out.println("Belägen " + r.toppings);
+						System.out.println("Kruste " + r.thickness);
+						System.out.println("");
+					}
+				}
+				} else if (g.equalsIgnoreCase("deustch")) {
+					a.add(new German());
+					German b = (German) a.get(a.size() - 1);
+					b.run();
+				} else {
+					System.out.println("Ungültiger Befehl");
+				}
+			}
+
+			if (g.equalsIgnoreCase("exit") || g.equalsIgnoreCase("ausfahrt")) {
+				loop = false;
+			}
+			g = null;
 
 		}
 
-	}
-}
+		i.close();
+
+	}}
