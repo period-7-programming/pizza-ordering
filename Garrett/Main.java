@@ -2,6 +2,9 @@ package pizza.ordering;
 
 import java.util.Scanner;
 
+// COMMENT: The current code doesn't not show an object-oriented approach with inheritance. Make sure to implement
+// the project using multiple objects for the language.
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -11,13 +14,13 @@ public class Main {
 		String g = i.nextLine();
 
 		if (g.equalsIgnoreCase("English")) {
-
 			e.setEnglish();
 		}
 		if (g.equalsIgnoreCase("Deustch")) {
 
 			e.setGerman();
 		}
+        // COMMENT: Always close resources before you move onto new code.
 		e.run();
 		i.close();
 	}
@@ -29,6 +32,9 @@ class Language {
 	Scanner i = new Scanner(System.in);
 
 	// q = question, s = statement, r = read back
+    
+
+    // COMMENT: Always set your variables to either public, private, or protected unless there is a specific reason for not doing so.
 
 	String q1 = "Hello, what size pizza would you like?", q2 = "Ok, what would you like on your pizza?",
 			q3 = "Would you like thin or thick crust?",
@@ -91,7 +97,6 @@ class Language {
 		thickness = i.nextLine();
 
 		if (size.equals("null") && toppings.equals("null") && thickness.equals("null")) {
-
 			System.out.println(s1);
 			System.out.println(s2);
 			System.out.println(s3);
