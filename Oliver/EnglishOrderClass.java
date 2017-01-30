@@ -1,35 +1,15 @@
 package pizza.ordering;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class EnglishOrder extends Order {
-	public String pizzaSize;
-	public String name;
-	public String address;
-	public List<Boolean> wantTopping = new ArrayList<Boolean>();
-	public List<String> toppingList = new ArrayList<String>();
 	public void run() {
-		name  = "";
-		address = "";
-		boolean sizeSelected = false;
-		pizzaSize = "";
-
+		super.run();
 		toppingList.add("Pepperoni");
-		wantTopping.add(false);
 		toppingList.add("Extra cheese");
-		wantTopping.add(false);
 		toppingList.add("Sausage");
-		wantTopping.add(false);
 		toppingList.add("Pineapple");
-		wantTopping.add(false);
 		toppingList.add("Ham");
-		wantTopping.add(false);
 		toppingList.add("Mushrooms");
-		wantTopping.add(false);
 		
-		Scanner userInput = new Scanner(System.in);
 		System.out.println("Hello, what is your name?");
 		name = userInput.nextLine();
 		System.out.println("Where do you live, " + name + "?");
